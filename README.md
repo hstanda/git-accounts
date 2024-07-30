@@ -149,18 +149,9 @@ Edit the global Git configuration file (~/.gitconfig):
 
 IMPORTANT
 - `Desktop/account1-work-directory/` this is the path to the respective repository for each git account
-- you can add multiple directories for one or multiple git accounts
-- For example if you are adding for two directories `account1-work-directory-1` and `account1-work-directory-2` for one of the git accounts `.github-account2-config` your file will look like this
-```bash
-[includeIf "gitdir:~/Desktop/account1-work-directory-1/"]
-    path = ~/.github-account1-config
+- `.gitconfig` file is at root directory for account1
+- `.github-account1-config` config path for account1
 
-[includeIf "gitdir:~/Desktop/account1-work-directory-2/"]
-    path = ~/.github-account1-config
-
-[includeIf "gitdir:~/Desktop/account1-work-directory/"]
-    path = ~/.github-account2-config
-```
 
 ### Step 8: Verify configurations and file names
 ```bash
