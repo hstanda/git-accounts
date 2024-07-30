@@ -9,15 +9,17 @@
 - these commands are executed on Linux
 
 ## Setup summery
-- setup ssh keys for multiple accounts
-- Add Keys to the SSH Agent
-- Add SSH Keys to Your Git Account
-- Configure SSH for Multiple Accounts
-- Test SSH Connection
-- Configure Git User Details
-- Update Global Git Configuration
-- Verify Configurations
-- Troubleshooting setup
+- [Set up SSH keys for multiple accounts](#step-1-create-ssh-keys)
+- [Add keys to the SSH agent](#step-2-add-keys-to-the-ssh-agent)
+- [Add SSH keys to your Git account](#step-3-add-ssh-keys-to-your-git-account)
+- [Configure SSH for multiple accounts](#step-4-configure-ssh-for-multiple-accounts)
+- [Test SSH connection](#step-5-test-ssh-connection)
+- [Configure Git user details](#step-6-configure-git-user-details)
+- [Update global Git configuration](#step-7-update-global-git-configuration)
+- [Verify configurations and file names](#step-8-verify-configurations-and-file-names)
+- [Linux Troubleshoot](#linux-troubleshoot)
+
+
 
 ## Prerequisites
 - Basic knowledge of Git and command-line interface (CLI)
