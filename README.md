@@ -160,7 +160,7 @@ IMPORTANT
     path = ~/.github-account2-config
 ```
 
-### Step 8: Verify Configurations
+### Step 8: Verify configurations and file names
 ```bash
 cat ~/.gitconfig
 cat ~/.ssh/config
@@ -168,3 +168,16 @@ cat ~/.github-account1-config
 cat ~/.github-account2-config
 ls -la ~/.ssh/
 ```
+
+### Linux Troubleshoot
+- ERROR: “ssh: Could not resolve hostname github.com: Temporary failure in name resolution”
+    Solution/Command: “sudo systemctl restart systemd-resolved”
+- Initial the ssh-agent
+    Solution/Command: eval "$(ssh-agent -s)"
+- Test the connection to the host added on the config file
+    ssh -T github-account-1
+    ssh -T github-account-2
+- Permissions 0644 for `account1-public-key-name` are too open. It is required that  your private key files are NOT accessible by others.
+    chmod 600 ~/.ssh/account2-public-key-name.pub
+
+- When creating multiple file its possible to miss names and location of the file. Check all file names and content follow step 8
