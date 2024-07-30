@@ -90,7 +90,7 @@ Host github-account-2
 - `IdentitiesOnly`: When set to yes, this option ensures that only the specified IdentityFile (and not any other identities in the agent) will be used for authentication.
 - if does not exist create the file in .ssh directory
 - in this file we are assigning github account to its ssh key
-- example `GitHub Account 1` is being assigned to `git-account1-ssh-file-name` key which was created in step 1
+- example `gitHub-account-1` is being assigned to `git-account1-ssh-file-name` key which was created in step 1
 
 ### Step 5: Test SSH Connection
 
@@ -101,3 +101,70 @@ ssh -T github-account-2
 - `ssh`: This is the command used to initiate an SSH (Secure Shell) connection to a remote host.
 - `-T`: This option disables pseudo-terminal allocation. It is typically used when you want to execute a command on the remote server without opening an interactive shell.
 - `github-account-1`: This is the alias defined in your ~/.ssh/config file. It specifies which host configuration to use for this connection.
+
+### Step 6: Configure Git User Details
+- Here we are creating two configuration files for each git account
+- Config files for this example
+```bash
+nano ~/.github-account1-config
+```
+content of the `.github-account1-config` file should look like this
+```bash
+[user]
+    name = account1
+    email = git-account1-email@gmail.com
+[core]
+    sshCommand = "ssh -i ~/.ssh/git-account1-ssh-file-name"
+```
+```bash
+nano ~/.github-account2-config
+```
+content of the `.github-account2-config` file should look like this
+```bash
+[user]
+    name = account2
+    email = git-account2-email@gmail.com
+[core]
+    sshCommand = "ssh -i ~/.ssh/git-account2-ssh-file-name"
+```
+- The [user] section sets the global Git username and email address.    These settings are used for commits and other Git operations.
+- [core] Sets the SSH command that Git should use when connecting to  remote repositories.
+    The -i option specifies the identity file (private SSH key) to use for authentication.
+    ~/.ssh/git-account1-ssh-file-name is the path to the SSH private key file for the specific GitHub account (git-account1).
+    
+### Step 7: Update Global Git Configuration
+
+This configuration is used to conditionally include other configuration files based on the directory of the Git repository you're working in. 
+
+Edit the global Git configuration file (~/.gitconfig):
+```bash
+[includeIf "gitdir:~/Desktop/account1-work-directory/"]
+    path = ~/.github-account1-config
+
+[includeIf "gitdir:~/Desktop/account1-work-directory/"]
+    path = ~/.github-account2-config
+```
+
+IMPORTANT
+- `Desktop/account1-work-directory/` this is the path to the respective repository for each git account
+- you can add multiple directories for one or multiple git accounts
+- For example if you are adding for two directories `account1-work-directory-1` and `account1-work-directory-2` for one of the git accounts `.github-account2-config` your file will look like this
+```bash
+[includeIf "gitdir:~/Desktop/account1-work-directory-1/"]
+    path = ~/.github-account1-config
+
+[includeIf "gitdir:~/Desktop/account1-work-directory-2/"]
+    path = ~/.github-account1-config
+
+[includeIf "gitdir:~/Desktop/account1-work-directory/"]
+    path = ~/.github-account2-config
+```
+
+### Step 8: Verify Configurations
+```bash
+cat ~/.gitconfig
+cat ~/.ssh/config
+cat ~/.github-account1-config
+cat ~/.github-account2-config
+ls -la ~/.ssh/
+```
