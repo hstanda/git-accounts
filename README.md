@@ -23,7 +23,8 @@
 - Basic knowledge of Git and command-line interface (CLI)
 - Git installed on your machine
 - The .ssh directory is at the root directory for the logged-in user
-- knowledge using the command line
+- knowledge using the command line 
+- terminal editor used here is [nano](https://help.ubuntu.com/community/Nano) if using Ubuntu Nano is part of the standard Ubuntu installation, and should be on your system already
 
 ### Step 1: Create SSH Keys
 Navigate to the SSH directory:
@@ -133,12 +134,17 @@ content of the `.github-account2-config` file should look like this
 This configuration is used to conditionally include other configuration files based on the directory of the Git repository you're working in.
 
 Edit the global Git configuration file (~/.gitconfig):
+
+```bash
+nano ~/.gitconfig
+```
+
 ```bash
 [includeIf "gitdir:~/Desktop/account1-work-directory/"]
    path = ~/.github-account1-config
 
 
-[includeIf "gitdir:~/Desktop/account1-work-directory/"]
+[includeIf "gitdir:~/Desktop/account2-work-directory/"]
    path = ~/.github-account2-config
 ```
 IMPORTANT
